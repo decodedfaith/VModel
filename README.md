@@ -1,0 +1,44 @@
+# VModel
+
+## Overview
+A SwiftUI-based social feed application that allows users to view posts, interact with content, and navigate seamlessly with a custom-designed UI. The app implements authentication, a top navigation bar, and a clean user interface to enhance the user experience.
+
+## Features
+- **User Authentication**: Basic login functionality with test credentials.
+- **Feed Display**: Users can view posts dynamically loaded from a data model.
+- **Custom Top Tab Bar**: Includes two icons (images) on each side and a centered title.
+- **Password Visibility Toggle**: Users can show/hide password input.
+- **Smooth Navigation**: Uses SwiftUI's `NavigationView`.
+
+## Test Login Credentials
+To access the app, use the following test credentials:
+- **Email**: `test.com`
+- **Password**: `password`
+
+## Installation
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/yourusername/FeedApp.git
+   ```
+2. Open the project in Xcode.
+3. Build and run on a simulator or physical device.
+
+## Technologies Used
+- **SwiftUI** for UI design
+- **ObservableObject & StateObject** for state management
+- **NavigationView & NavigationLink** for navigation
+
+## Screenshots
+*(Add screenshots of your app here for better presentation)*
+
+## Roadmap
+Planned improvements:
+- Implement user authentication with Firebase
+- Add the ability to like and comment on posts
+- Introduce a profile and settings page
+
+## License
+This project is licensed under the MIT License.
+
+---
+Let me know if you need any modifications or additional sections!
