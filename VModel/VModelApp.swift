@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct VModelApp: App {
-    let persistenceController = PersistenceController.shared
+    @StateObject var authViewModel = AuthViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if authViewModel.isAuthenticated {
+                FeedView()
+            } else {
+                WelcomeView()
+            }
         }
     }
 }
