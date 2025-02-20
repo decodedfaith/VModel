@@ -18,7 +18,7 @@ To access the app, use the following test credentials:
 ## Installation
 1. Clone this repository:
    ```sh
-   git clone https://github.com/yourusername/FeedApp.git
+   [git clone https://github.com/decodedfaith/VModel.git]
    ```
 2. Open the project in Xcode.
 3. Build and run on a simulator or physical device.
@@ -30,6 +30,23 @@ To access the app, use the following test credentials:
 
 ## Screenshots
 *(Add screenshots of your app here for better presentation)*
+<img width="514" alt="Screenshot 2025-02-20 at 9 13 14 AM" src="https://github.com/user-attachments/assets/2def5292-d4f5-430a-b467-7a4d939806a2" />
+<img width="558" alt="Screenshot 2025-02-20 at 9 13 26 AM" src="https://github.com/user-attachments/assets/f0eea715-d6a9-4634-ae05-e948632a16db" />
+<img width="558" alt="Screenshot 2025-02-20 at 9 13 52 AM" src="https://github.com/user-attachments/assets/b8423ea3-ec74-44e9-853c-e427c18f306e" />
+<img width="558" alt="Screenshot 2025-02-20 at 9 13 59 AM" src="https://github.com/user-attachments/assets/65241297-487b-47cf-a791-d704b8005e77" />
+<img width="558" alt="Screenshot 2025-02-20 at 9 14 10 AM" src="https://github.com/user-attachments/assets/eefc2102-1b97-45f3-8b4b-ee41875e05b9" />
+
+
+https://github.com/user-attachments/assets/1c7e41a8-6a0e-4b40-a677-8ee9fb4c112c
+
+
+
+
+
+
+
+
+
 
 ## Roadmap
 Planned improvements:
