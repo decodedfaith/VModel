@@ -14,21 +14,21 @@ class FeedViewModel: ObservableObject {
         posts = [
             Post(userName: "Jennifer Lewis",
                                   content: "Unleash your style with our revolutionary product. Elevate your fashion game like never before. Use our product today and get the best out of premium #FashionForward #Fashio... Read more...",
-                 image:"2",
+                 image:["2", "2", "2", "2", "2", "2"],
                  location: ""
                 ),
             Post(userName: "Samantha Joan", content: "Unleash your style with our revolutionary product. Elevate your fashion game like never before. Use our product today and get the best out of premium #FashionForward #Fashio... Read more...",
-                 image:"3",
+                 image:["3", "3", "3", "3", "3", "3"],
                  location: "Manchester Gallery, Manchester UK"
                 ),
             Post(userName: "Matthew Jonas",
                  content: "Unleash your style with our revolutionary product. Elevate your fashion game like never before. Use our product today and get the best out of premium #FashionForward #Fashio... Read more...",
-                 image:"4",
+                 image:["4", "4", "4", "4", "4", "4"],
                  location: "Manchester Gallery, Manchester UK"
                 ),
             Post(userName: "Olivier Meyers",
                  content: "Unleash your style with our revolutionary product. Elevate your fashion game like never before. Use our product today and get the best out of premium #FashionForward #Fashio... Read more...",
-                 image:"1",
+                 image:["1", "1", "1", "1", "1", "1"],
                  location: "Manchester Gallery, Manchester UK"
                 )
         ]
