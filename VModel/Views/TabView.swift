@@ -8,25 +8,35 @@
 import SwiftUI
 
 struct ImageCarouselView: View {
-    let images: [String]
+    let images: [GraphQLMedia]
     @State private var selectedIndex = 0
     
     var body: some View {
         VStack {
             GeometryReader { geometry in
+                
                 TabView(selection: $selectedIndex) {
+                  
                     ForEach(images.indices, id: \.self) { index in
-                        Image(images[index])
-                            .resizable()
-                            .scaledToFill() // Ensures the image fills the space
+                        if let url = URL(string: images[index].itemLink) {
+                            
+                            AsyncImage(url: url) { image in
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .scaledToFill()
                             .frame(maxWidth: .infinity)
                             .clipped()
                             .tag(index)
+                        }
+
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
             .frame(height: 500)
+            
             HStack(spacing: 6) {
                 ForEach(images.indices, id: \.self) { index in
                     Circle()
@@ -38,10 +48,5 @@ struct ImageCarouselView: View {
             }
             .padding(.top, 8)
         }
-    }
-    
-    // Function to estimate image height dynamically (adjust as needed)
-    private func getDynamicHeight() -> CGFloat {
-        return UIScreen.main.bounds.width * 1.5 // Adjust this factor based on image dimensions
     }
 }
