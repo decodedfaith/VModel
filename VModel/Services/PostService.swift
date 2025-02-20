@@ -11,14 +11,15 @@ class PostService {
     static func fetchPosts() -> [Post] {
         return [
             Post(userName: "Jennifer", content: "Unleash your style with our revolutionary product.",
-                 image: "",
+                 image: [""],
                  location: ""),
             Post(userName: "Samantha", content: "New fashion trends are here!",
-                 image: "",
+                 image: [""],
                  location: ""
                 ),
             Post(userName: "Matthew", content: "Check out my latest shoot!",
-                 image: "",
+                 image: [""]
+                 ,
                  location: ""
                 )
         ]
