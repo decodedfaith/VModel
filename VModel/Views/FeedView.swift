@@ -49,6 +49,7 @@ struct FeedView: View {
                         }
                     }
                 }
+                BottomNavBar()
             }
             .onAppear {
                 feedViewModel.fetchPosts()
