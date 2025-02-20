@@ -8,23 +8,29 @@
 import SwiftUI
 
 struct PostRow: View {
-    var post: Post
+    var post: GraphQLPost
     
     
     var body: some View {
-        let firstWord = post.userName.components(separatedBy: " ").first ?? ""
+        let firstWord = post.user.username.components(separatedBy: " ").first ?? ""
         
         VStack(alignment: .leading) {
             HStack{
-                Image(post.image.first ?? "")
-                    .resizable()
-                    .scaledToFill()
+                AsyncImage(url: URL(string: post.user.profilePictureUrl ?? "")) { image in
+                        image.resizable()
+                             .scaledToFill()
+                    } placeholder: {
+                        Image(systemName: "person.circle.fill") // Default fallback icon
+                            .resizable()
+                            .scaledToFill()
+                    }
                     .frame(width: 30, height: 30)
                     .clipShape(Circle())
-                Text(post.userName)
+                
+                Text(post.user.username)
                 .font(.headline)}
             .padding(18)
-            ImageCarouselView(images: post.image)
+            ImageCarouselView(images:post.media)
             
             
             HStack{
@@ -63,15 +69,14 @@ struct PostRow: View {
                 (Text(firstWord)
                     .font(.footnote)
                     .bold()
-                 + Text(" " + post.content)
+                 + Text(" " + post.caption)
                     .font(.footnote)
                 )
                 .padding(18)
             }
             
         }
-        //        .padding()
-        //        .padding()
+
         .background(Color.gray.opacity(0.1))
         .cornerRadius(8)
     }
