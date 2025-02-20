@@ -12,49 +12,49 @@ struct FeedView: View {
     
     var body: some View {
         NavigationView {
-//            // **Custom Top Tab Bar**
-//                            HStack {
-//                                // Left Image Icon
-//                                Image("left_icon")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 24, height: 24) // Adjust size as needed
-//                                
-//                                Spacer()
-//                                
-//                                // Title in the Center
-//                                Text("Feed")
-//                                    .font(.headline)
-//                                    .fontWeight(.bold)
-//                                
-//                                Spacer()
-//                                
-//                                // Right Image Icon
-//                                Image("right_icon")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 24, height: 24) // Adjust size as needed
-//                            }
-//                            .padding()
-            ScrollView {
-                VStack {
-                    ForEach(feedViewModel.posts) { post in
-                        PostRow(post: post)
+            VStack {
+                HStack {
+                    HStack {
+                        Image("row")
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                        Image("column")
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                    }
+                    
+                    Spacer()
+                    
+                    Text("Feed")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Image("video")
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                        Image("notification")
+                            .resizable()
+                            .frame(width: 18, height: 18)
                     }
                 }
                 .padding()
-            }
-            .navigationTitle("Feed")
-            .toolbar {
-                Button(action: {
-                    feedViewModel.fetchPosts()
-                }) {
-                    Image(systemName: "arrow.clockwise")
+                
+                ScrollView {
+                    VStack {
+                        ForEach(feedViewModel.posts) { post in
+                            PostRow(post: post)
+                        }
+                    }
                 }
             }
+            .onAppear {
+                feedViewModel.fetchPosts()
+            }
         }
-        .onAppear {
-            feedViewModel.fetchPosts()
-        }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
