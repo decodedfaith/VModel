@@ -11,6 +11,6 @@ struct Post: Identifiable {
     let id = UUID()
     let userName: String
     let content: String
-    let image: String
+    let image: [String]
     let location: String
 }
