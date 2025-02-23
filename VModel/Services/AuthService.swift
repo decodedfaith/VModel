@@ -59,6 +59,60 @@ class AuthService {
         getAuthToken()
     }
     
+    func signUp(email: String, username: String, firstName: String, lastName: String, userType: String, label: String, isBusinessAccount: Bool, password1: String, password2: String, completion: @escaping (Result<String, APIError>) -> Void) {
+            guard let url = URL(string: baseURL) else {
+                completion(.failure(.invalidURL))
+                return
+            }
+            
+            let requestBody = SignupRequest(query: GraphQLQueries.signUpQuery, variables: [
+                "email": AnyCodable(email),
+                    "username": AnyCodable(username),
+                    "firstName": AnyCodable(firstName),
+                    "lastName": AnyCodable(lastName),
+                    "userType": AnyCodable(userType),
+                    "label": AnyCodable(label),
+                    "isBusinessAccount": AnyCodable(isBusinessAccount),  // Bool is wrapped
+                    "password1": AnyCodable(password1),
+                    "password2": AnyCodable(password2)
+            ])
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = try? JSONEncoder().encode(requestBody)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Network error:", error.localizedDescription)
+                    completion(.failure(.requestFailed(error.localizedDescription)))
+                    return
+                }
+
+                guard let data = data else {
+                    completion(.failure(.requestFailed("No data received")))
+                    return
+                }
+
+                print("Raw JSON response:", String(data: data, encoding: .utf8) ?? "Invalid data")
+
+                do {
+                    let decodedResponse = try JSONDecoder().decode(SignupResponse.self, from: data)
+                    if let token = decodedResponse.data?.register.token {
+                        UserDefaults.standard.set(token, forKey: "authToken")
+                        completion(.success(token))
+                    } else {
+                        let errorMessage = decodedResponse.data?.register.errors?.description ?? "Signup failed"
+                        completion(.failure(.requestFailed(errorMessage)))
+                    }
+                } catch {
+                    print("Decoding error:", error)
+                    completion(.failure(.decodingError))
+                }
+            }.resume()
+        getAuthToken()
+        }
+    
     func getAuthToken() {
         let token = UserDefaults.standard.string(forKey: "authToken")
         authToken = token
