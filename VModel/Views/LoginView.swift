@@ -62,10 +62,13 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(10)
             
-            NavigationLink(destination: FeedView(), isActive: $authViewModel.isAuthenticated){
-                Button(action: {
+            NavigationLink(destination: FeedView(), isActive: $authViewModel.isAuthenticated) {
+                EmptyView() // This ensures the navigation happens when isAuthenticated becomes true
+            }
+
+            Button(action: {
                 authViewModel.login(username: email, password: password)
-                    print("Attempting login...")
+                print("Attempting login...")
             }) {
                 Text("Log in")
                     .frame(maxWidth: .infinity)
@@ -73,7 +76,7 @@ struct LoginView: View {
                     .background(Color.brown)
                     .foregroundColor(.white)
                     .cornerRadius(8)
-            }}
+            }
             .padding(15)
             Text("or")
                 .font(.caption)
