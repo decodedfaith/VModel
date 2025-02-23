@@ -46,4 +46,20 @@ class AuthViewModel: ObservableObject {
             print(result)
         }
     }
+    
+    func signUp(email: String, username: String, firstName: String, lastName: String, userType: String, label: String, isBusinessAccount: Bool, password1: String, password2: String) {
+            AuthService.shared.signUp(email: email, username: username, firstName: firstName, lastName: lastName, userType: userType, label: label, isBusinessAccount: isBusinessAccount, password1: password1, password2: password2) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let token):
+                        print("Signup successful! Token:", token)
+                        UserDefaults.standard.set(token, forKey: "authToken")
+                        self.isAuthenticated = true
+                    case .failure(let error):
+                        print("Signup failed with error:", error)
+                        self.errorMessage = error.localizedDescription
+                    }
+                }
+            }
+        }
 }
