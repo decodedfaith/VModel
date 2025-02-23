@@ -40,4 +40,37 @@ struct GraphQLQueries {
             }
         }
         """
+    
+    static let signUpQuery = """
+        mutation Register(
+          $email: String!,
+          $username: String!,
+          $firstName: String!,
+          $lastName: String!,
+          $userType: String!,
+          $label: String!,
+          $isBusinessAccount: Boolean!,
+          $password1: String!,
+          $password2: String!
+        ) {
+          register(
+            email: $email,
+            username: $username,
+            firstName: $firstName,
+            lastName: $lastName,
+            userType: $userType,
+            label: $label,
+            isBusinessAccount: $isBusinessAccount,
+            password1: $password1,
+            password2: $password2
+          ) {
+            success
+            token
+            id
+            pk
+            restToken
+            errors
+          }
+        }
+        """
 }
